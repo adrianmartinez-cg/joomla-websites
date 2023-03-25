@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Carrossel</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .carousel-lab{
+            position: relative;
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;   
+        }
+
+        .carousel-lab > svg {
+            cursor: pointer;
+            position: absolute;
+        }
+
+        .carousel-lab-left{
+            top: 40%;
+            bottom: auto;
+            left: -30px;
+            right:auto;
+        }
+
+        .carousel-lab-right{
+            top: 40%;
+            bottom: auto;
+            left: auto;
+            right:-30px;
+        }
+
+        .carousel-lab-gallery-wrapper {
+            overflow-x: auto;
+            -ms-overflow-style: none;  /* Hide for IE and Edge */
+            scrollbar-width: none;  /* Hide for Firefox */
+        }
+
+        .carousel-lab-gallery {
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 15px;
+        }
+
+        .carousel-lab-gallery-item {
+            flex: 0 0 320px;
+            opacity: .5;
+            
+        }
+
+        .carousel-lab-gallery-current{
+            opacity: 1;
+        }
+        /* Hide scrollbar for Chrome Safari and Opera */
+        .carousel-lab-gallery-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-lab-gallery-item > button {
+            all:unset;
+            text-align: center;
+            width: 95%;
+            height: 35px;
+            background-color: #0a8067;
+            color: #ffffff;
+            border: 1px solid #003b1c;
+            border-radius: 5px;
+            font-size: 14px;
+            padding: 3px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 3px 5px 5px rgb(138, 138, 138);       
+        }
+
+    </style>
+    <body>
+        <div class="carousel-lab">
+            <svg fill="#000000" width="30px" height="30px" viewBox="-8.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" class="carousel-lab-control carousel-lab-left">
+                <title>carousel lab left button</title>
+                <path d="M7.094 15.938l7.688 7.688-3.719 3.563-11.063-11.063 11.313-11.344 3.531 3.5z"></path>
+            </svg>
+            <svg fill="#000000" width="30px" height="30px" viewBox="-8.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" class="carousel-lab-control carousel-lab-right">
+                <title>carousel lab right button</title>
+                <path d="M7.75 16.063l-7.688-7.688 3.719-3.594 11.063 11.094-11.344 11.313-3.5-3.469z"></path>
+            </svg>
+            <div class="carousel-lab-gallery-wrapper">
+                <div class="carousel-lab-gallery">
+                    <div class="carousel-lab-gallery-item carousel-lab-gallery-current">
+                        <img src="../src/img/card-laboratorio-img1.jpg">
+                        <h3>Teste</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis corporis eveniet dolor eum, nulla cumque. Suscipit, deserunt. Dolor, voluptatem mollitia?</p>
+                        <button>Visualizar</button>
+                    </div>
+                    <div class="carousel-lab-gallery-item">
+                        <img src="../src/img/card-laboratorio-img1.jpg">
+                        <h3>Teste</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis corporis eveniet dolor eum, nulla cumque. Suscipit, deserunt. Dolor, voluptatem mollitia?</p>
+                        <button>Visualizar</button>
+                    </div>
+                    <div class="carousel-lab-gallery-item">
+                        <img src="../src/img/card-laboratorio-img1.jpg">
+                        <h3>Teste</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis corporis eveniet dolor eum, nulla cumque. Suscipit, deserunt. Dolor, voluptatem mollitia?</p>
+                        <button>Visualizar</button>
+                    </div>
+                    <div class="carousel-lab-gallery-item">
+                        <img src="../src/img/card-laboratorio-img1.jpg">
+                        <h3>Teste</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis corporis eveniet dolor eum, nulla cumque. Suscipit, deserunt. Dolor, voluptatem mollitia?</p>
+                        <button>Visualizar</button>
+                    </div>
+                    <div class="carousel-lab-gallery-item">
+                        <img src="../src/img/card-laboratorio-img1.jpg">
+                        <h3>Teste</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis corporis eveniet dolor eum, nulla cumque. Suscipit, deserunt. Dolor, voluptatem mollitia?</p>
+                        <button>Visualizar</button>
+                    </div>
+                    <div class="carousel-lab-gallery-item">
+                        <img src="../src/img/card-laboratorio-img1.jpg">
+                        <h3>Teste</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis corporis eveniet dolor eum, nulla cumque. Suscipit, deserunt. Dolor, voluptatem mollitia?</p>
+                        <button>Visualizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const controls = document.querySelectorAll('.carousel-lab-control');
+            let currentItem = 0;
+            const items = document.querySelectorAll('.carousel-lab-gallery-item');
+            const numItems = items.length;
+
+            controls.forEach( control => {
+                control.addEventListener('click', () => {
+                    const isLeft = control.classList.contains('carousel-lab-left');
+                    const slideFactor = 1;
+                    if(isLeft){
+                        currentItem -= slideFactor;
+                    } else {
+                        currentItem += slideFactor;
+                    }
+
+                    if(currentItem >= numItems){
+                        currentItem = 0;
+                    }
+
+                    if(currentItem < 0 ){
+                        currentItem = numItems - 1;
+                    }
+
+                    items.forEach(item => {
+                        item.classList.remove('carousel-lab-gallery-current');
+                        items[currentItem].scrollIntoView({
+                            inline: "center",
+                            behavior: "smooth"
+                        });
+                        items[currentItem].classList.add('carousel-lab-gallery-current');
+                    })
+
+
+                })
+            });
+
+
+        </script>
+    </body>
+</html>
